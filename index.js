@@ -2,9 +2,14 @@ import express from "express";
 import cors from "cors";
 import UserRoute from "./routes/UserRoute.js";
 
-const nama=`Daffa`
 const app = express();
-app.use (cors());
+app.use(cors());
 app.use(express.json());
 app.use(UserRoute);
-app.listen(5757, ()=> console.log(`Server ${nama} berjalan baik `) );
+
+const host = process.env.HOST || 'localhost';
+const port = process.env.PORT || 5757;
+
+app.listen(port, host, () => {
+  console.log(`Server berjalan di http://${host}:${port}`);
+});
